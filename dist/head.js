@@ -554,7 +554,7 @@
 
         script.state = LOADING;
 
-        scriptTag(script.url, function() {
+        scriptTag(script, function() {
 
             script.state = LOADED;
 
@@ -583,7 +583,7 @@
         s.src = src.src || src.url || src.url.src;
         s.async = false;
         var id =  src.src || src.name;
-        id = id.replace(/http:\/\//i, '');
+        id = id.replace(/https?:\/\//i, '');
         s.id = id.replace(/[.\/]+/ig, '-');
 
         s.onreadystatechange = s.onload = function() {
