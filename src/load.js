@@ -112,13 +112,13 @@
         if (isFunc(key)) {
             fn = key;
             key = "ALL";
-        }    
+        }
 
         // make sure arguments are sane
         if (typeof key != 'string' || !isFunc(fn)) { return api; }
 
         var script = scripts[key];
-        
+
         // script already loaded --> execute and return
         if (script && script.state == LOADED || key == 'ALL' && allLoaded() && isDomReady) {
             one(fn);
@@ -148,8 +148,8 @@
 
 
     /*** private functions ***/
-    
-    
+
+
     // call function once
     function one(fn) {
         if (fn._done) { return; }
@@ -210,12 +210,12 @@
         els = els || scripts;
 
         var loaded;
-        
+
         for (var name in els) {
             if (els.hasOwnProperty(name) && els[name].state != LOADED) { return false; }
             loaded = true;
         }
-        
+
         return loaded;
     }
 
@@ -283,9 +283,13 @@
     function scriptTag(src, callback) {
 
         var s = doc.createElement('script');
-        s.type = 'text/' + (src.type || 'javascript');
-        s.src = src.src || src;
+
+        s.type = 'text/' + (src.type || src.url.type || 'javascript');
+        s.src = src.src || src.url || src.url.src;
         s.async = false;
+        var id =  src.src || src.name;
+        id = id.replace(/http:\/\//i, '');
+        s.id = id.replace(/[.\/]+/ig, '-');
 
         s.onreadystatechange = s.onload = function() {
 
