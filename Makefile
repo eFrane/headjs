@@ -1,5 +1,9 @@
+.PHONY: clean
+
 all: head min load
 
+clean:
+	rm -rf dist/*.js
 
 # for debugging
 head: src/core.js src/css3.js src/load.js
