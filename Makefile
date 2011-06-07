@@ -7,7 +7,7 @@ head: src/core.js src/css3.js src/load.js
 	cat $^ > dist/head.js
 
 min: head
-	uglifyjs dist/head.js > dist/head.min.js
-	
+	closure --js dist/head.js > dist/head.min.js
+
 load: src/load.js
-	uglifyjs $^ > dist/head.load.min.js
+	closure --js $^ > dist/head.load.min.js
