@@ -585,6 +585,7 @@
         var id =  src.src || src.name;
         id = id.replace(/https?:\/\//i, '');
         s.id = id.replace(/[.\/]+/ig, '-');
+        s.id = s.id+'-js';
 
         s.onreadystatechange = s.onload = function() {
 
